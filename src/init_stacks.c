@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 22:34:51 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/03 22:36:09 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/03 23:38:39 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ t_stacks *init_stacks(int ac, char **av)
 	stacks->A = get_numbers(stacks, av + 1, ac - 1);
 	stacks->B = f_memalloc(sizeof(stacks->B) * ac - 1);
 	stacks->acount = ac - 1;
+	stacks->total = ac - 1;
 	stacks->bcount = 0;
+	while (--ac)
+		stacks->B[ac] = EMPTY;
 	return (stacks);
 }

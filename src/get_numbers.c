@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 22:36:57 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/03 22:40:30 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/03 23:39:15 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ static void	chk_nbr(char *nbr)
 	}
 }
 
-int			*get_numbers(t_stacks *stacks, char **nbrs, int n) 
+long		*get_numbers(t_stacks *stacks, char **nbrs, int n) 
 {
-	int *ret;
+	long *ret;
 	long nbr;
 
 	ret = f_memalloc(sizeof(*ret) * n);
