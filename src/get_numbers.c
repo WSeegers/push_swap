@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 22:36:57 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 03:34:37 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/05 13:50:07 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,28 +30,41 @@ static void	chk_dup(t_stack *stack)
 	}
 }
 
-static void	chk_nbr(char *nbr)
+static char	*chk_nbr(char *nbr)
 {
 	while (*nbr)
 	{
+		while (*nbr == ' ')
+			nbr++;
 		if (*nbr == '-' || *nbr == '+')
 			nbr++;
 		if (!f_isdigit(*nbr))
 			e_exit();
 		nbr++;
 	}
+	return (nbr);
 }
 
 void	get_numbers(t_stack *stack, char **nbrs, int n)
 {
 	long nbr;
+	char *temp;
 
 	while (--n >= 0)
 	{
-		chk_nbr(nbrs[n]);
-		if ((nbr = f_strtol(nbrs[n], NULL, 10)) > INT_MAX || nbr < INT_MIN)
-			e_exit();
-		stack_add(stack, nbr);
+			chk_nbr(nbrs[n]);
+			if ((nbr = f_strtol(nbrs[n], NULL, 10)) > INT_MAX || nbr < INT_MIN)
+				e_exit();
+			stack_add(stack, nbr);
+			temp = f_strchr(nbrs[n], ' ');
+			while (temp)
+			{
+				chk_nbr(temp);
+				if ((nbr = f_strtol(temp, NULL, 10)) > INT_MAX || nbr < INT_MIN)
+					e_exit();
+				stack_add_back(stack, nbr);
+				temp = f_strchr(temp + 1, ' ');
+			}
 	}
 	chk_dup(stack);
 }

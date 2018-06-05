@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 21:37:45 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 05:08:42 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/05 12:55:20 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PUSH_SWAP_H
 
 # include <limits.h>
+# include <stddef.h>
 # include "s_stack.h"
 # include "f_print.h"
 
@@ -28,6 +29,7 @@ typedef struct	s_info
 	int		count;
 	int		min;
 	int		max;
+	long 	limit;
 }				t_info;
 
 t_info		*get_info(int ac, char **av);
@@ -35,6 +37,14 @@ void		get_numbers(t_stack *stack, char **nbrs, int n);
 void		stack_ops(t_info *info, char *op);
 void		print_stacks(t_info *info);
 void		check_stacks(t_info *info);
+void		rank_info(t_info *info);
+int			op_print(t_info *info, char op[4]);
+size_t		stack_find_rank(t_stack *stack, long n);
 void		e_exit();
+
+int			rule_push_limit(t_info *info);
+int			rule_top_swap(t_info *info);
+int			rule_back_stack(t_info *info);
+void		rule_final_order(t_info *info);
 
 #endif

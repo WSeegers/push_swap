@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_info.c                                         :+:      :+:    :+:   */
+/*   rank_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/03 22:34:51 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 10:28:55 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/05 05:34:41 by wseegers          #+#    #+#             */
+/*   Updated: 2018/06/05 07:06:18 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,28 @@
 #include "push_swap.h"
 #include "f_memory.h"
 
-t_info		*get_info(int ac, char **av)
+void	rank_info(t_info *info)
 {
-	t_info	*info;
+	size_t	i;
+	size_t	j;
+	int		next[2];
+	t_stack	*temp;
 
-	info = f_memalloc(sizeof(*info));
-	info->min = INT_MAX;
-	info->max = INT_MIN;
-	info->A = stack_create();
-	get_numbers(info->A, av + 1, ac - 1);
-	info->B = stack_create();
-	info->count = ac - 1;
-	info->limit = 0;
-	return (info);
+	i = -1;
+	temp = stack_copy(info->A);
+	while (++i < info->A->size && (j = -1) && (next[1] = INT_MAX))
+	{
+		while (++j < info->A->size)
+		{
+			if (temp->data[j] < next[1])
+			{
+				next[0] = j;
+				next[1] = temp->data[j];
+			}
+		}
+		info->A->data[next[0]] = i;
+		temp->data[next[0]] = INT_MAX;
+	}
+	f_memdel((void**)&temp->data);
+	f_memdel((void**)&temp);
 }
