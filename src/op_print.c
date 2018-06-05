@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 09:58:45 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 22:42:35 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/05 22:58:11 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,6 @@ int		op_print(t_info *info, char op[4])
 		f_print_str(op);
 		f_print_str("\n");
 		stack_ops(info, op);
-		print_stacks(info);	
+		//print_stacks(info);	
 		return (1);
 }
