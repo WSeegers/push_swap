@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 05:11:47 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 13:51:51 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/05 22:39:32 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int		main(int ac, char *av[])
 		exit(0);
 	info = get_info(ac, av);
 	rank_info(info);
-	print_stacks(info);
-	rule_push_limit(info);
+	//print_stacks(info);
 	push_swap(info);
 	exit(0);
 }

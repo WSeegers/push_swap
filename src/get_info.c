@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 22:34:51 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 10:28:55 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/05 22:29:40 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ t_info		*get_info(int ac, char **av)
 	info->A = stack_create();
 	get_numbers(info->A, av + 1, ac - 1);
 	info->B = stack_create();
-	info->count = ac - 1;
+	info->count = info->A->size;
 	info->limit = 0;
 	return (info);
 }
