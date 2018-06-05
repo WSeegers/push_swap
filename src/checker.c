@@ -6,18 +6,11 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 20:58:47 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 05:08:10 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/05 05:12:15 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "push_swap.h"
-#include "f_print.h"
-#include "f_memory.h"
-#include "f_string.h"
-#include "f_math.h"
 #include "f_io.h"
 
 int	main(int ac, char *av[])
