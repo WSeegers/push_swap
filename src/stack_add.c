@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   has_dup.c                                          :+:      :+:    :+:   */
+/*   stack_add.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/03 22:50:05 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/03 22:52:49 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/05 03:28:18 by wseegers          #+#    #+#             */
+/*   Updated: 2018/06/05 03:28:49 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "s_stack.h"
+#include "f_memory.h"
 
-void	has_dup(t_stacks *stacks)
+void	stack_add(t_stack *stack, int nbr)
 {
-	int i;
-	int j;
+	long *new_mem;
 
-	i = -1;
-	while (++i < stacks->acount + 1)
+	if (stack->size == stack->cap)
 	{
-		j = i;
-		while (++j < stacks->acount)
-			if (stacks->A[i] == stacks->A[j])
-				e_exit();
+		new_mem = (long*)f_memalloc((stack->cap *= 2) * DATA_SIZE);
+		f_memcpy(new_mem, stack->data, stack->cap / 2 * DATA_SIZE);
+		stack->data = new_mem;
 	}
+	f_memmove(stack->data + 1, stack->data, stack->size * DATA_SIZE);
+	stack->data[0] = nbr;
+	stack->size++;
 }

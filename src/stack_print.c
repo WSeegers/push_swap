@@ -1,41 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   stack_print.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/03 20:58:47 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 05:08:10 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/05 03:25:36 by wseegers          #+#    #+#             */
+/*   Updated: 2018/06/05 03:26:23 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <stdlib.h>
-#include <stdbool.h>
-#include "push_swap.h"
+#include "s_stack.h"
 #include "f_print.h"
-#include "f_memory.h"
-#include "f_string.h"
-#include "f_math.h"
-#include "f_io.h"
 
-int	main(int ac, char *av[])
+void	stack_print(t_stack *stack)
 {
-	t_info *info;
-	char 	*line;
-	
-	if (ac == 1)
-		exit(0);
-	info = get_info(ac, av); 
-	
-	print_stacks(info);
-	while (f_next_line(&line, STDIN))
+	size_t	count;
+
+	count = -1;
+	f_print_str("___\n\n");
+	while (++count < stack->size)
 	{
-		stack_ops(info, line);
-		print_stacks(info);
-		f_strdel(&line);
+		f_print_nbr(stack->data[count]);
+		f_print_str("\n");
 	}
-	check_stacks(info);
-	exit(0);
+	f_print_str("___\n");
 }

@@ -6,7 +6,7 @@
 #    By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/03 20:54:46 by wseegers          #+#    #+#              #
-#    Updated: 2018/06/03 22:50:43 by wseegers         ###   ########.fr        #
+#    Updated: 2018/06/05 05:02:20 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,9 @@ INC = -I toolkit-wtc/include -I src
 LIB = toolkit-wtc/toolkit-wtc.a
 
 SRC_PATH = src
-SRC = checker.c e_exit.c init_stacks.c get_numbers.c has_dup.c
+SRC = checker.c get_info.c get_numbers.c create_stack.c e_exit.c stack_print.c\
+	  stack_pop.c stack_add.c stack_init.c stack_rot.c print_stacks.c\
+	  stack_swap.c stack_ops.c check_stacks.c
 BIN_PATH = bin
 BIN := $(SRC:%.c=$(BIN_PATH)/%.o)
 DEP := $(BIN:%.o=%.d)

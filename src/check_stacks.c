@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   checker.c                                          :+:      :+:    :+:   */
+/*   check_stacks.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/03 20:58:47 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 05:08:10 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/05 04:55:10 by wseegers          #+#    #+#             */
+/*   Updated: 2018/06/05 05:09:53 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <limits.h>
-#include <stdlib.h>
-#include <stdbool.h>
 #include "push_swap.h"
 #include "f_print.h"
-#include "f_memory.h"
-#include "f_string.h"
-#include "f_math.h"
-#include "f_io.h"
 
-int	main(int ac, char *av[])
+void	check_stacks(t_info *info)
 {
-	t_info *info;
-	char 	*line;
-	
-	if (ac == 1)
-		exit(0);
-	info = get_info(ac, av); 
-	
-	print_stacks(info);
-	while (f_next_line(&line, STDIN))
+	size_t i;
+
+	if (!info->B->size && info->A->size == 1)
+		OK;
+	else if (info->B->size)
+		KO;
+	else
 	{
-		stack_ops(info, line);
-		print_stacks(info);
-		f_strdel(&line);
+		i = -1;
+		while (++i + 1 < info->A->size)
+			if (info->A->data[i] > info->A->data[i + 1])
+			{
+				KO;
+				return ;
+			}
+		OK;
 	}
-	check_stacks(info);
-	exit(0);
 }
