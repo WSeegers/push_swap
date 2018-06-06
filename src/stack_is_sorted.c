@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 06:13:51 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 08:34:11 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/05 23:18:59 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ascending(t_stack *stack)
 	{
 		i = -1;
 		while (++i + 1 < stack->size)
-			if (stack->data[i] > stack->data[i + 1])
+			if (stack->data[i] != stack->data[i + 1] - 1)
 				return (0);
 		return (1);
 	}
@@ -38,7 +38,7 @@ static int	descending(t_stack *stack)
 	{
 		i = -1;
 		while (++i + 1 < stack->size)
-			if (stack->data[i] < stack->data[i + 1])
+			if (stack->data[i] != stack->data[i + 1] + 1)
 				return (0);
 		return (1);
 	}
