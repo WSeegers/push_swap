@@ -1,35 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_stacks.c                                     :+:      :+:    :+:   */
+/*   create_state.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/05 04:55:10 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 22:38:49 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/18 21:50:51 by wseegers          #+#    #+#             */
+/*   Updated: 2018/06/18 22:40:54 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "f_print.h"
+#include "f_memory.h"
+#include "s_state.h"
 
-void	check_stacks(t_info *info)
+t_state	*create_state(void)
 {
-	size_t i;
-
-	if (!info->stk_b->size && info->stk_a->size == 1)
-		OK;
-	else if (info->stk_b->size)
-		KO;
-	else
-	{
-		i = -1;
-		while (++i + 1 < info->stk_a->size)
-			if (info->stk_a->data[i] > info->stk_a->data[i + 1])
-			{
-				KO;
-				return ;
-			}
-		OK;
-	}
+	return ((t_state*)f_memalloc(sizeof(t_state)));
 }

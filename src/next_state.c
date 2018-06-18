@@ -1,35 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_stacks.c                                     :+:      :+:    :+:   */
+/*   next_state.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/05 04:55:10 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 22:38:49 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/18 22:00:10 by wseegers          #+#    #+#             */
+/*   Updated: 2018/06/18 22:59:44 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-#include "f_print.h"
+#include "s_state.h"
+#include "f_string.h"
 
-void	check_stacks(t_info *info)
+t_state			*next_state(t_state *parent, char op[4])
 {
-	size_t i;
-
-	if (!info->stk_b->size && info->stk_a->size == 1)
-		OK;
-	else if (info->stk_b->size)
-		KO;
-	else
-	{
-		i = -1;
-		while (++i + 1 < info->stk_a->size)
-			if (info->stk_a->data[i] > info->stk_a->data[i + 1])
-			{
-				KO;
-				return ;
-			}
-		OK;
-	}
+	t_state *new_state;
+	
+	new_state = create_state();
+	new_state->parent = parent;
+	new_state->stk_a = stack_copy(parent->stk_a);
+	new_state->stk_b = stack_copy(parent->stk_b);
+	f_strcpy(new_state->op, op);
+	state_op(new_state, op);
+	return (new_state);
 }

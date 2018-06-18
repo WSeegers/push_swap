@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rule_final_order.c                                 :+:      :+:    :+:   */
+/*   s_state.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/05 12:49:42 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 12:56:29 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/18 21:54:59 by wseegers          #+#    #+#             */
+/*   Updated: 2018/06/18 22:43:38 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef S_STATE_H
+# define S_STATE_H
 
-void	rule_final_order(t_info *info)
+# include "s_stack.h"
+
+typedef struct	s_state
 {
-	while (info->A->data[0] != 0)
-		op_print(info, "rra");
-}
+	t_stack			*stk_a;
+	t_stack			*stk_b;
+	char 			op[4];
+	struct s_state	*parent;
+}				t_state;
+
+t_state			*create_state(void);
+t_state			*next_state(t_state *parent, char op[4]);
+void			state_op(t_state *state, char *op);
+
+#endif
