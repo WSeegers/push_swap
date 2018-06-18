@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 03:45:19 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 11:12:55 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 12:08:18 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static void	set_colour(char *instruct, size_t i, size_t max, char stack)
 	}
 }
 
-void	print_stacks(t_info *info, char *instruct)
+void		print_stacks(t_info *info, char *instruct)
 {
 	size_t i;
 	size_t max;

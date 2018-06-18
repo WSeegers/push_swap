@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 22:36:57 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 09:11:19 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 12:20:59 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,6 @@ static char	*chk_nbr(char *nbr)
 	return (nbr);
 }
 
-#include <stdio.h>
-
 static bool	get_flag(t_info *info, char *arg)
 {
 	if (arg[0] != '-')
@@ -65,7 +63,7 @@ static bool	get_flag(t_info *info, char *arg)
 	return (true);
 }
 
-void	get_numbers(t_info *info, char **nbrs, int n)
+void		get_numbers(t_info *info, char **nbrs, int n)
 {
 	long nbr;
 	char *temp;

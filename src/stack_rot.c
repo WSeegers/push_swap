@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 03:35:23 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 03:43:34 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 12:05:10 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 void	stack_rot(t_stack *stack)
 {
 	long	temp;
-	
+
 	if (stack->size < 2)
 		return ;
 	temp = stack->data[0];
@@ -27,7 +27,7 @@ void	stack_rot(t_stack *stack)
 void	stack_rrot(t_stack *stack)
 {
 	long	temp;
-	
+
 	if (stack->size < 2)
 		return ;
 	temp = stack->data[stack->size - 1];

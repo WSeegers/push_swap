@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 05:34:41 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 07:06:18 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 12:15:49 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ void	rank_info(t_info *info)
 
 	i = -1;
 	temp = stack_copy(info->A);
-	while (++i < info->A->size && (j = -1) && (next[1] = INT_MAX))
+	while (++i < info->A->size && (j = -1))
 	{
+		next[1] = INT_MAX;
 		while (++j < info->A->size)
 		{
 			if (temp->data[j] < next[1])

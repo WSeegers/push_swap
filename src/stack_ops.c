@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 23:03:51 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 04:49:51 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 12:06:09 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	swap(t_info *info, int op)
 		e_exit();
 }
 
-static void push(t_info *info, int op)
+static void	push(t_info *info, int op)
 {
 	long nbr;
 
@@ -50,7 +50,7 @@ static void	rot(t_info *info, char op)
 		stack_rot(info->A);
 	else if (op == 'b')
 		stack_rot(info->B);
-	else 
+	else
 		e_exit();
 }
 
@@ -65,11 +65,11 @@ static void	rrot(t_info *info, char op)
 		stack_rrot(info->A);
 	else if (op == 'b')
 		stack_rrot(info->B);
-	else 
+	else
 		e_exit();
 }
 
-void	stack_ops(t_info *info, char *op)
+void		stack_ops(t_info *info, char *op)
 {
 	if (*op == 's' && !op[2])
 		swap(info, op[1]);

@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 05:11:47 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 11:51:39 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 12:40:15 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@ static void	push_swap(t_info *info)
 {
 	while (!stack_is_sorted(info->A, 1))
 	{
-		if(rule_top_swap(info))
-			continue ;
 		rule_push_limit(info);
 		if (!stack_is_sorted(info->A, 1))
 			op_print(info, "pb");
@@ -30,7 +28,7 @@ static void	push_swap(t_info *info)
 	rule_final_order(info);
 }
 
-int		main(int ac, char *av[])
+int			main(int ac, char *av[])
 {
 	t_info *info;
 
@@ -38,7 +36,6 @@ int		main(int ac, char *av[])
 		exit(0);
 	info = get_info(ac, av);
 	rank_info(info);
-	//print_stacks(info);
 	push_swap(info);
 	exit(0);
 }

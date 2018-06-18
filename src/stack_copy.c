@@ -6,13 +6,13 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 05:40:54 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 07:06:02 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 12:07:50 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "s_stack.h"
 
-t_stack *stack_copy(t_stack *stack)
+t_stack	*stack_copy(t_stack *stack)
 {
 	t_stack	*cpy;
 	int		i;

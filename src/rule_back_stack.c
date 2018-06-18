@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 11:44:25 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 11:51:38 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 12:49:41 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int	find_max(long *data, long max)
 	return (ret);
 }
 
-int		rule_back_stack(t_info *info)
+int			rule_back_stack(t_info *info)
 {
-	long max;
+	long	max;
 
 	max = info->B->size - 1;
 	while (info->B->size)
