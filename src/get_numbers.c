@@ -6,11 +6,12 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 22:36:57 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 22:17:43 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 09:11:19 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <limits.h>
+#include <stdbool.h>
 #include "push_swap.h"
 #include "f_memory.h"
 #include "f_string.h"
@@ -45,26 +46,47 @@ static char	*chk_nbr(char *nbr)
 	return (nbr);
 }
 
-void	get_numbers(t_stack *stack, char **nbrs, int n)
+#include <stdio.h>
+
+static bool	get_flag(t_info *info, char *arg)
+{
+	if (arg[0] != '-')
+		return (false);
+	while (*++arg)
+	{
+		if (*arg == 'v')
+			SET_FLAG(info->flag, F_VBOSE);
+		else if (*arg == 'c')
+		{
+			SET_FLAG(info->flag, F_COLOUR);
+			SET_FLAG(info->flag, F_VBOSE);
+		}
+	}
+	return (true);
+}
+
+void	get_numbers(t_info *info, char **nbrs, int n)
 {
 	long nbr;
 	char *temp;
 
 	while (--n >= 0)
 	{
-			chk_nbr(nbrs[n]);
-			if ((nbr = f_strtol(nbrs[n], NULL, 10)) > INT_MAX || nbr < INT_MIN)
+		if (get_flag(info, nbrs[n]))
+			continue;
+		chk_nbr(nbrs[n]);
+		if ((nbr = f_strtol(nbrs[n], NULL, 10)) > INT_MAX || nbr < INT_MIN)
+			e_exit();
+		stack_add(info->A, nbr);
+		temp = f_strchr(nbrs[n], ' ');
+		while (temp)
+		{
+			chk_nbr(temp);
+			if ((nbr = f_strtol(temp, NULL, 10)) > INT_MAX || nbr < INT_MIN)
 				e_exit();
-			stack_add(stack, nbr);
-			temp = f_strchr(nbrs[n], ' ');
-			while (temp)
-			{
-				chk_nbr(temp);
-				if ((nbr = f_strtol(temp, NULL, 10)) > INT_MAX || nbr < INT_MIN)
-					e_exit();
-				stack_add_back(stack, nbr);
-				temp = f_strchr(temp + 1, ' ');
-			}
+			stack_add_back(info->A, nbr);
+			temp = f_strchr(temp + 1, ' ');
+		}
 	}
-	chk_dup(stack);
+	chk_dup(info->A);
 }

@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 21:37:45 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/05 12:55:20 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 11:12:57 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,17 @@
 # define OK f_print_str("OK\n")
 # define KO f_print_str("KO\n")
 
+# define SET_FLAG(flag, n) (flag = (flag | (1 << n)))
+# define IS_FLAG_SET(flag, n) (flag & (1 << n))
+
+# define F_VBOSE 0
+# define F_COLOUR 1
+
 typedef struct	s_info
 {
 	t_stack	*A;
 	t_stack *B;
+	int		flag;
 	int		count;
 	int		min;
 	int		max;
@@ -33,9 +40,9 @@ typedef struct	s_info
 }				t_info;
 
 t_info		*get_info(int ac, char **av);
-void		get_numbers(t_stack *stack, char **nbrs, int n);
+void		get_numbers(t_info *info, char **nbrs, int n);
 void		stack_ops(t_info *info, char *op);
-void		print_stacks(t_info *info);
+void		print_stacks(t_info *info, char* instruction);
 void		check_stacks(t_info *info);
 void		rank_info(t_info *info);
 int			op_print(t_info *info, char op[4]);
