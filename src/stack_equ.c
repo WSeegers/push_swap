@@ -1,31 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   next_state.c                                       :+:      :+:    :+:   */
+/*   stack_equ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/18 22:00:10 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/19 07:17:44 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/19 06:55:14 by wseegers          #+#    #+#             */
+/*   Updated: 2018/06/19 07:12:21 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "s_state.h"
-#include "f_string.h"
+#include <stdbool.h>
 #include "s_stack.h"
-#include "f_print.h"
+#include "f_memory.h"
 
-t_state			*next_state(t_state *parent, char op[4])
+bool	stack_equ(t_stack *s1, t_stack *s2)
 {
-	t_state *new_state;
-	
-	new_state = create_state();
-	new_state->parent = parent;
-	new_state->stk_a = stack_copy(parent->stk_a);
-	new_state->stk_b = stack_copy(parent->stk_b);
-	f_strcpy(new_state->op, op);
-	state_op(new_state, op);
-	if (state_equ(new_state, parent))
-		return (NULL);
-	return (new_state);
+	if (s1->size != s1->size)
+		return (false);
+	if(f_memcmp(s1->data, s2->data, s1->size * sizeof(long)))
+		return (false);
+	return (true);
 }
