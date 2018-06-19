@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 05:11:47 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/19 08:14:43 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/19 16:52:58 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,71 +19,92 @@
 #include "s_state.h"
 #include "f_print.h"
 
-static void		get_children(t_list *search_list,t_list *v_list, t_state *state)
-{
-	excl_append_state(search_list, v_list, next_state(state, "sa"));
-	excl_append_state(search_list, v_list, next_state(state, "sb"));
-	excl_append_state(search_list, v_list, next_state(state, "ss"));
-	excl_append_state(search_list, v_list, next_state(state, "pa"));
-	excl_append_state(search_list, v_list, next_state(state, "pb"));
-	excl_append_state(search_list, v_list, next_state(state, "ra"));
-	excl_append_state(search_list, v_list, next_state(state, "rb"));
-	excl_append_state(search_list, v_list, next_state(state, "rr"));
-	excl_append_state(search_list, v_list, next_state(state, "rra"));
-	excl_append_state(search_list, v_list, next_state(state, "rrb"));
-	excl_append_state(search_list, v_list, next_state(state, "rrr"));
-}
+# define TOP_A(info) (info->stk_a->data[0])
+# define SEC_A(info) (info->stk_a->data[1])
+# define TOP_B(info) (info->stk_b->data[0])
+# define SEC_B(info) (info->stk_b->data[1])
 
-static t_state	*find_path(t_info *info)
+void	push_swap(t_info *info)
 {
-	t_list	*search_list;
-	t_list	*visit_list;
-	t_state	*current;
-	
-	search_list = s_list_create(NULL);
-	visit_list = s_list_create(NULL);
-	current = create_state();
-	current->parent = NULL;
-	current->stk_a = stack_copy(info->stk_a);
-	current->stk_b = stack_copy(info->stk_b);
-	s_list_append(search_list, current);
+	int range;
+	int i;
 
-	while (search_list->size)
+	range = info->limit / 4;
+	i = -1;
+	while (++i < info->limit)
 	{
-		f_printf("list_size: %lu\n", search_list->size);
-		current = (t_state*)s_list_pop(search_list, 0);
-		if (stack_is_sorted(current->stk_a, 0) && !current->stk_b->size)
+		if (TOP_A(info) < range)
 		{
-			return (current);
+			op_print(info, "ra");
 		}
-		get_children(search_list, visit_list, current);
-		s_list_append(visit_list, current);
+		else if (TOP_A(info) < range * 2 + (info->limit % 4 == 3))
+		{
+			op_print(info, "pb");
+			op_print(info, "rb");
+		}
+		else if (TOP_A(info) < range * 3 + (info->limit % 4 == 3) + (info->limit % 4 >= 2))
+			op_print(info, "pb");
+		else
+			op_print(info, "ra");
+		print_stacks_line(info->stk_a, info->stk_b);
 	}
-	return (NULL);
+	while (info->stk_a->size)
+	{
+		op_print(info, "pb");
+		if (TOP_B(info) < range * 2)
+			op_print(info, "rb");
+		print_stacks_line(info->stk_a, info->stk_b);
+	}
+
+	while (info->stk_b->size)
+		op_print(info, "pa");
+	print_stacks_line(info->stk_a, info->stk_b);
+
+	int j = 0;
+	range = info->limit / 4 / 4;
+	i = -1;
+	while (++i < info->limit / 4)
+	{
+		if (TOP_A(info) < range)
+		{
+			j++;
+			op_print(info, "ra");
+		}
+		else if (TOP_A(info) < range * 2 + (info->limit % 4 == 3))
+		{
+			op_print(info, "pb");
+			op_print(info, "rb");
+		}
+		else if (TOP_A(info) < range * 3 + (info->limit % 4 == 3) + (info->limit % 4 >= 2))
+			op_print(info, "pb");
+		else
+		{
+			j++;
+			op_print(info, "ra");
+		}
+		print_stacks_line(info->stk_a, info->stk_b);
+	}
+	while (j)
+	{
+		op_print(info, "rra");
+		op_print(info, "pb");
+		if (TOP_B(info) < range * 2)
+			op_print(info, "rb");
+		print_stacks_line(info->stk_a, info->stk_b);
+		j--;
+	}
 }
 
 int			main(int ac, char *av[])
 {
 	t_info *info;
-	t_state *cur;
 
 	if (ac == 1)
 		exit(0);
 	info = get_info(ac, av);
 	rank_info(info);
-	if ((cur = find_path(info)))
-	{
-		while (cur)
-		{
-			f_printf("op: %s\t", cur->op);
-			for (size_t i = 0; i < cur->stk_a->size; i++)
-				f_printf("%ld-", cur->stk_a->data[i]);
-			f_printf("\t");
-			for (size_t i = 0; i < cur->stk_b->size; i++)
-				f_printf("%ld-", cur->stk_b->data[i]);
-			f_printf("\n");
-			cur = cur->parent;
-		}
-	}
+	
+	push_swap(info);
+
 	exit(0);
 }

@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   state_equ.c                                        :+:      :+:    :+:   */
+/*   print_stacks_line.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/06/19 07:14:29 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/19 12:35:32 by wseegers         ###   ########.fr       */
+/*   Created: 2018/06/19 12:36:24 by wseegers          #+#    #+#             */
+/*   Updated: 2018/06/19 13:02:23 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdbool.h>
-#include "s_state.h"
+#include "f_print.h"
 #include "s_stack.h"
 
-bool state_equ(t_state *s1, t_state *s2)
+void	print_stacks_line(t_stack *stk_a, t_stack *stk_b)
 {
-	if (stack_equ(s1->stk_a, s2->stk_a) &&
-		stack_equ(s1->stk_a, s2->stk_a))
-		return (true);
-	return (false);
+	if (stk_a)
+	{
+		for (size_t i = 0; i < stk_a->size; i++)
+			f_printf("%ld-", stk_a->data[i]);
+		f_printf("\t");
+	}
+	if (stk_b)
+	{
+		for (size_t i = 0; i < stk_b->size; i++)
+			f_printf("%ld-", stk_b->data[i]);
+		f_printf("\n");
+	}
 }

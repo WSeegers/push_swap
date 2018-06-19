@@ -6,7 +6,7 @@
 #    By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/06/03 20:54:46 by wseegers          #+#    #+#              #
-#    Updated: 2018/06/19 07:42:34 by wseegers         ###   ########.fr        #
+#    Updated: 2018/06/19 13:39:41 by wseegers         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,8 @@ SRC = get_info.c get_numbers.c create_stack.c e_exit.c stack_print.c\
 	  stack_pop.c stack_add.c stack_init.c stack_rot.c print_stacks.c\
 	  stack_swap.c stack_ops.c check_stacks.c stack_copy.c stack_is_sorted.c\
 	  rank_info.c op_print.c stack_find_rank.c state_ops.c\
-	  create_state.c next_state.c stack_equ.c state_equ.c excl_append_state.c
+	  create_state.c next_state.c stack_equ.c state_equ.c excl_append_state.c\
+	  print_stacks_line.c
 BIN_PATH = bin
 BIN := $(SRC:%.c=$(BIN_PATH)/%.o)
 DEP := $(BIN:%.o=%.d)

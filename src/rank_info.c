@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 05:34:41 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 22:39:14 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/19 13:00:35 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	rank_info(t_info *info)
 		info->stk_a->data[next[0]] = i;
 		temp->data[next[0]] = INT_MAX;
 	}
+	info->limit = info->stk_a->size;
 	f_memdel((void**)&temp->data);
 	f_memdel((void**)&temp);
 }
