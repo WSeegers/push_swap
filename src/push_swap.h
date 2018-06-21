@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 21:37:45 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/21 20:15:57 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/21 20:51:46 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@
 
 # define TOP_A(info) (info->stk_a->data[0])
 # define SEC_A(info) (info->stk_a->data[1])
+# define BOT_A(info) (info->stk_a->data[info->stk_a->size - 1])
 # define TOP_B(info) (info->stk_b->data[0])
 # define SEC_B(info) (info->stk_b->data[1])
+# define BOT_B(info) (info->stk_b->data[info->stk_b->size - 1])
 
 typedef struct	s_info
 {
@@ -58,5 +60,6 @@ int				rule_push_limit(t_info *info);
 int				rule_top_swap(t_info *info);
 int				rule_back_stack(t_info *info);
 void			rule_final_order(t_info *info);
+void			rule_split(t_info *info);
 
 #endif
