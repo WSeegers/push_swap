@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/18 22:00:10 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/19 07:17:44 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/21 07:11:08 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,10 @@ t_state			*next_state(t_state *parent, char op[4])
 	state_op(new_state, op);
 	if (state_equ(new_state, parent))
 		return (NULL);
+	else
+	{
+		new_state->g_cost = parent->g_cost + 1;
+		new_state->h_cost = h_cost(new_state);
+	}
 	return (new_state);
 }

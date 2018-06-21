@@ -6,10 +6,22 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/19 12:33:21 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/19 12:35:22 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/21 07:28:25 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "s_list.h"
+#include "push_swap.h"
+
+static int			cmp_cost(void *d1, void *d2)
+{
+	t_state *s1;
+	t_state *s2;
+
+	s1 = (t_state*)d1;
+	s2 = (t_state*)d2;
+	return ((s2->g_cost + s2->h_cost) - (s1->g_cost + s1->h_cost));
+}
 
 static void		get_children(t_list *search_list,t_list *v_list, t_state *state)
 {
@@ -24,6 +36,8 @@ static void		get_children(t_list *search_list,t_list *v_list, t_state *state)
 	excl_append_state(search_list, v_list, next_state(state, "rra"));
 	excl_append_state(search_list, v_list, next_state(state, "rrb"));
 	excl_append_state(search_list, v_list, next_state(state, "rrr"));
+	(void)cmp_cost;
+//	s_list_mergesort(search_list, cmp_cost);
 }
 
 t_state	*graph_search(t_info *info)
@@ -36,8 +50,10 @@ t_state	*graph_search(t_info *info)
 	visit_list = s_list_create(NULL);
 	current = create_state();
 	current->parent = NULL;
+	current->g_cost = 0;
 	current->stk_a = stack_copy(info->stk_a);
 	current->stk_b = stack_copy(info->stk_b);
+	current->h_cost = h_cost(current);
 	s_list_append(search_list, current);
 
 	while (search_list->size)
