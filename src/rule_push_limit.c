@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 10:30:16 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/21 17:17:21 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/21 20:15:55 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,6 @@ int			rule_push_limit(t_info *info)
 	while (info->stk_a->data[0] >= info->limit &&
 			!stack_is_sorted(info->stk_a, 1))
 	{
-		f_printf("push\n");
 		op_print(info, "ra");
 		ret = 1;
 	}

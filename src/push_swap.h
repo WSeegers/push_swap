@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 21:37:45 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/21 16:34:54 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/21 20:15:57 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@
 
 # define F_VBOSE 0
 # define F_COLOUR 1
+
+# define TOP_A(info) (info->stk_a->data[0])
+# define SEC_A(info) (info->stk_a->data[1])
+# define TOP_B(info) (info->stk_b->data[0])
+# define SEC_B(info) (info->stk_b->data[1])
 
 typedef struct	s_info
 {
