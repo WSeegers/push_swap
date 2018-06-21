@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 23:03:51 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 12:06:09 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 13:05:28 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static void	swap(t_info *info, int op)
 		swap(info, 'b');
 	}
 	else if (op == 'a')
-		stack_swap(info->A);
+		stack_swap(info->stk_a);
 	else if (op == 'b')
-		stack_swap(info->B);
+		stack_swap(info->stk_b);
 	else
 		e_exit();
 }
@@ -31,10 +31,10 @@ static void	push(t_info *info, int op)
 {
 	long nbr;
 
-	if (op == 'a' && stack_pop(info->B, &nbr))
-		stack_add(info->A, nbr);
-	else if (op == 'b' && stack_pop(info->A, &nbr))
-		stack_add(info->B, nbr);
+	if (op == 'a' && stack_pop(info->stk_b, &nbr))
+		stack_add(info->stk_a, nbr);
+	else if (op == 'b' && stack_pop(info->stk_a, &nbr))
+		stack_add(info->stk_b, nbr);
 	else if (op != 'a' && op != 'b')
 		e_exit();
 }
@@ -47,9 +47,9 @@ static void	rot(t_info *info, char op)
 		rot(info, 'b');
 	}
 	else if (op == 'a')
-		stack_rot(info->A);
+		stack_rot(info->stk_a);
 	else if (op == 'b')
-		stack_rot(info->B);
+		stack_rot(info->stk_b);
 	else
 		e_exit();
 }
@@ -62,9 +62,9 @@ static void	rrot(t_info *info, char op)
 		rrot(info, 'b');
 	}
 	else if (op == 'a')
-		stack_rrot(info->A);
+		stack_rrot(info->stk_a);
 	else if (op == 'b')
-		stack_rrot(info->B);
+		stack_rrot(info->stk_b);
 	else
 		e_exit();
 }

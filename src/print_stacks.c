@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 03:45:19 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 12:08:18 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 13:04:57 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,21 @@ void		print_stacks(t_info *info, char *instruct)
 	size_t max;
 
 	i = -1;
-	max = f_max(info->A->size, info->B->size);
+	max = f_max(info->stk_a->size, info->stk_b->size);
 	while (++i < max)
 	{
 		if (IS_FLAG_SET(info->flag, F_COLOUR))
-			set_colour(instruct, i - (max - info->A->size), info->A->size, 'A');
-		if (max - i <= info->A->size)
-			f_print_nbr_fd(2, info->A->data[i - (max - info->A->size)]);
+			set_colour(instruct, i - (max - info->stk_a->size),
+					info->stk_a->size, 'A');
+		if (max - i <= info->stk_a->size)
+			f_print_nbr_fd(2, info->stk_a->data[i - (max - info->stk_a->size)]);
 		f_print_err("\t\t");
 		f_print_err(COL_CLEAR);
 		if (IS_FLAG_SET(info->flag, F_COLOUR))
-			set_colour(instruct, i - (max - info->B->size), info->B->size, 'B');
-		if (max - i <= info->B->size)
-			f_print_nbr_fd(2, info->B->data[i - (max - info->B->size)]);
+			set_colour(instruct, i - (max - info->stk_b->size),
+					info->stk_b->size, 'B');
+		if (max - i <= info->stk_b->size)
+			f_print_nbr_fd(2, info->stk_b->data[i - (max - info->stk_b->size)]);
 		f_print_err("\n");
 		f_print_err(COL_CLEAR);
 	}

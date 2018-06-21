@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 22:36:57 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 12:20:59 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 13:04:12 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,16 @@ void		get_numbers(t_info *info, char **nbrs, int n)
 		chk_nbr(nbrs[n]);
 		if ((nbr = f_strtol(nbrs[n], NULL, 10)) > INT_MAX || nbr < INT_MIN)
 			e_exit();
-		stack_add(info->A, nbr);
+		stack_add(info->stk_a, nbr);
 		temp = f_strchr(nbrs[n], ' ');
 		while (temp)
 		{
 			chk_nbr(temp);
 			if ((nbr = f_strtol(temp, NULL, 10)) > INT_MAX || nbr < INT_MIN)
 				e_exit();
-			stack_add_back(info->A, nbr);
+			stack_add_back(info->stk_a, nbr);
 			temp = f_strchr(temp + 1, ' ');
 		}
 	}
-	chk_dup(info->A);
+	chk_dup(info->stk_a);
 }

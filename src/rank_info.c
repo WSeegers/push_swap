@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 05:34:41 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 12:15:49 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 13:06:13 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	rank_info(t_info *info)
 	t_stack	*temp;
 
 	i = -1;
-	temp = stack_copy(info->A);
-	while (++i < info->A->size && (j = -1))
+	temp = stack_copy(info->stk_a);
+	while (++i < info->stk_a->size && (j = -1))
 	{
 		next[1] = INT_MAX;
-		while (++j < info->A->size)
+		while (++j < info->stk_a->size)
 		{
 			if (temp->data[j] < next[1])
 			{
@@ -34,7 +34,7 @@ void	rank_info(t_info *info)
 				next[1] = temp->data[j];
 			}
 		}
-		info->A->data[next[0]] = i;
+		info->stk_a->data[next[0]] = i;
 		temp->data[next[0]] = INT_MAX;
 	}
 	f_memdel((void**)&temp->data);

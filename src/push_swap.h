@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 21:37:45 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 12:48:07 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/21 16:34:54 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@
 
 typedef struct	s_info
 {
-	t_stack	stk_a;
-	t_stack stk_b;
+	t_stack	*stk_a;
+	t_stack *stk_b;
 	int		flag;
 	int		count;
 	int		min;

@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 11:44:25 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 12:49:41 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/18 13:12:13 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ int			rule_back_stack(t_info *info)
 {
 	long	max;
 
-	max = info->B->size - 1;
-	while (info->B->size)
+	max = info->stk_b->size - 1;
+	while (info->stk_b->size)
 	{
-		while (info->B->data[0] == max)
+		while (info->stk_b->data[0] == max)
 		{
 			op_print(info, "pa");
 			max--;
 		}
-		if (info->B->size)
+		if (info->stk_b->size)
 		{
-			if (find_max(info->B->data, max) < max / 2)
+			if (find_max(info->stk_b->data, max) < max / 2)
 				op_print(info, "rb");
 			else
 				op_print(info, "rrb");
