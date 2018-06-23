@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/04 14:45:29 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/18 12:19:14 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/23 05:05:40 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define S_STACK_H
 
 # include <stddef.h>
+# include <stdbool.h>
 
 # define INIT_STACK_SIZE 8
 # define DATA_SIZE (sizeof(long))
@@ -36,5 +37,6 @@ t_stack			*stack_copy(t_stack *stack);
 int				stack_is_sorted(t_stack *stack, int direction);
 void			stack_add_back(t_stack *stack, int nbr);
 void			stack_print(t_stack *stack);
+bool			stack_equ(t_stack *s1, t_stack *s2);
 
 #endif

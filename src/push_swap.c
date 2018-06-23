@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 05:11:47 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/21 20:57:41 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/23 08:25:45 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,23 @@
 #include "f_io.h"
 #include "f_string.h"
 #include "f_memory.h"
+
+static void print_rec(t_info *info, t_state *state)
+{
+	if (state->parent)
+	{
+		print_rec(info, state->parent);
+		op_print(info, state->op);
+	}
+}
+
+static void brute_force(t_info *info)
+{
+	t_state *last_state;
+
+	last_state = graph_search(info);
+	print_rec(info, last_state);
+}
 
 static void	algo(t_info *info)
 {	
@@ -37,6 +54,11 @@ int			main(int ac, char *av[])
 		exit(0);
 	info = get_info(ac, av);
 	rank_info(info);
-	algo(info);
+	if (stack_is_sorted(info->stk_a, 1))
+		exit (0);
+	if (info->count < 8)
+		brute_force(info);
+	else
+		algo(info);
 	exit(0);
 }

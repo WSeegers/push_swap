@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/03 21:37:45 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/21 20:51:46 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/21 21:06:12 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stddef.h>
 # include "s_stack.h"
 # include "f_print.h"
+# include "s_state.h"
 
 # define EMPTY LONG_MIN
 # define OK f_print_str("OK\n")
@@ -61,5 +62,7 @@ int				rule_top_swap(t_info *info);
 int				rule_back_stack(t_info *info);
 void			rule_final_order(t_info *info);
 void			rule_split(t_info *info);
+
+t_state			*graph_search(t_info *info);
 
 #endif
