@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 21:00:51 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/21 21:01:06 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/23 10:04:37 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static bool	chk_state(void *s1, void *s2)
 	return (state_equ((t_state*)s1, (t_state*)s2));
 }
 
-void	excl_append_state(t_list *search_list, t_list *v_list, t_state *state)
+void		excl_append_state(t_list *search_list, t_list *v_list,
+															t_state *state)
 {
 	t_state *temp;
 

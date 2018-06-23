@@ -6,14 +6,14 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 20:59:53 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/21 21:06:41 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/23 10:03:29 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "s_list.h"
 #include "push_swap.h"
 
-static void		get_children(t_list *search_list,t_list *v_list, t_state *state)
+static void	get_children(t_list *search_list, t_list *v_list, t_state *state)
 {
 	excl_append_state(search_list, v_list, next_state(state, "sa"));
 	excl_append_state(search_list, v_list, next_state(state, "sb"));
@@ -28,12 +28,12 @@ static void		get_children(t_list *search_list,t_list *v_list, t_state *state)
 	excl_append_state(search_list, v_list, next_state(state, "rrr"));
 }
 
-t_state	*graph_search(t_info *info)
+t_state		*graph_search(t_info *info)
 {
 	t_list	*search_list;
 	t_list	*visit_list;
 	t_state	*current;
-	
+
 	search_list = s_list_create(NULL);
 	visit_list = s_list_create(NULL);
 	current = create_state();
@@ -41,7 +41,6 @@ t_state	*graph_search(t_info *info)
 	current->stk_a = stack_copy(info->stk_a);
 	current->stk_b = stack_copy(info->stk_b);
 	s_list_append(search_list, current);
-
 	while (search_list->size)
 	{
 		current = (t_state*)s_list_pop(search_list, 0);

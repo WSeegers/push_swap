@@ -6,7 +6,7 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/21 20:49:07 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/21 20:57:15 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/23 10:01:30 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	re_split(t_info *info, int range)
 		op_print(info, "pb");
 }
 
-static void split_bot(t_info *info, int range)
+static void	split_bot(t_info *info, int range)
 {
 	int i;
 
@@ -45,10 +45,9 @@ static void split_bot(t_info *info, int range)
 			if (TOP_B(info) < range)
 				op_print(info, "rb");
 		}
-		else 
+		else
 			op_print(info, "ra");
 	}
-
 }
 
 static void	split_top(t_info *info, int range)
@@ -68,7 +67,8 @@ static void	split_top(t_info *info, int range)
 			op_print(info, "ra");
 	}
 }
-void	rule_split(t_info *info)
+
+void		rule_split(t_info *info)
 {
 	int range;
 

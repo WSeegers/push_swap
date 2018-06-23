@@ -6,17 +6,17 @@
 /*   By: wseegers <wseegers.mauws@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/06/05 05:11:47 by wseegers          #+#    #+#             */
-/*   Updated: 2018/06/23 08:25:45 by wseegers         ###   ########.fr       */
+/*   Updated: 2018/06/23 09:58:46 by wseegers         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "stdlib.h"
+#include <stdlib.h>
 #include "push_swap.h"
 #include "f_io.h"
 #include "f_string.h"
 #include "f_memory.h"
 
-static void print_rec(t_info *info, t_state *state)
+static void	print_rec(t_info *info, t_state *state)
 {
 	if (state->parent)
 	{
@@ -25,7 +25,7 @@ static void print_rec(t_info *info, t_state *state)
 	}
 }
 
-static void brute_force(t_info *info)
+static void	brute_force(t_info *info)
 {
 	t_state *last_state;
 
@@ -34,7 +34,7 @@ static void brute_force(t_info *info)
 }
 
 static void	algo(t_info *info)
-{	
+{
 	rule_split(info);
 	while (!stack_is_sorted(info->stk_a, 1))
 	{
@@ -55,7 +55,7 @@ int			main(int ac, char *av[])
 	info = get_info(ac, av);
 	rank_info(info);
 	if (stack_is_sorted(info->stk_a, 1))
-		exit (0);
+		exit(0);
 	if (info->count < 8)
 		brute_force(info);
 	else
