@@ -137,6 +137,7 @@ then
 
 	TEST=${CLR}'Average in range (0 to 499)'
 	ERR=0
+	TOTAL=0
 	for i in range {1..99}
 		do 
 			ARG=`ruby -e "puts (0..499).to_a.shuffle.join(' ')"`
